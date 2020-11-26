@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version:   Build Version: 1.6.7615.34517
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="Base_chasis_prototipo_3.SLDASM">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.021561 -0.00090841 0.10501"
+        rpy="0 0 0" />
+      <mass
+        value="26.207" />
+      <inertia
+        ixx="0.26748"
+        ixy="3.0319E-06"
+        ixz="4.4769E-06"
+        iyy="0.18596"
+        iyz="-9.6769E-09"
+        izz="0.40313" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://prototipo_urdf/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://prototipo_urdf/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+</robot>

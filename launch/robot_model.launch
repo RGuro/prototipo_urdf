@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<launch>
+  
+
+    <node pkg="teleop_amr" type="robot_hadware.py" name="robot_hadware" output="screen"/>
+
+    <node pkg="teleop_amr" type="Sensor_odom_publisher.py" name="Sensor_odom_publisher" output="screen"/> 
+        <param name="rate" type="int" value="10" />
+	<param name="ticks_meter" type="string" value="255" />
+        <param name="base_width" type="string" value="0.630" />
+        <param name="base_frame_id" type="string" value="base_footprint" />
+	<param name="odom_frame_id" type="string" value="odom" /> 
+    
+    <node pkg="tf" type="static_transform_publisher" name="map_to_odom" 
+          args="0 0 0 0 0 0 1 map odom 100" />   
+     
+    <node pkg="tf" type="static_transform_publisher" name="base_footprint_to_base_link" 
+          args="0 0 0.10501 0 0 0 1 base_footprint base_link 100" />
+
+    <node pkg="tf" type="static_transform_publisher" name="base_to_laser" 
+          args="0.202 0 0.111 0 0 0 1 base_link laser_frame 100" />    
+    
+    <param name="robot_description" textfile="$(find prototipo_urdf)/robots/Base_chasis_prototipo_3.SLDASM.urdf" />
+
+
+    
+
+</launch>
