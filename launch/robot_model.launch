@@ -2,8 +2,14 @@
 
 <launch>
   
+<!-- ***********         Connect to Robot     *************  -->
+
+    <include file="$(find rosserial_python)/launch/robot_connect.launch"/>
+
 <!-- ***********         Scripts     *************  -->
     <node pkg="teleop_amr" type="robot_hadware.py" name="robot_hadware" output="screen"/>
+
+    <node pkg="teleop_amr" type="teleop_amr.py" name="teleop_amr" output="screen"/>
 
     <node pkg="teleop_amr" type="Sensor_odom_publisher.py" name="Sensor_odom_publisher" output="screen"/> 
         <param name="rate" type="int" value="10" />
@@ -20,10 +26,23 @@
         <param name="fixed_frame" type="string" value="base_link" />
         <param name="frame_name" type="string" value="imu_frame" />
     </node>
+
+    <include file="$(find rplidar_ros)/launch/rplidar.launch"/>
  
 <!-- ***********          MAP     *************  -->
-    <node name="map_server" pkg="map_server" type="map_server" args="$(find Robot_config)/maps/test1.yaml" />
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find robot_config)/maps/casarubens.yaml" />
 	<param name="frame_id" value="map" />
+
+<!-- ***********          Localization     *************  -->
+
+   <node pkg="amcl" type="amcl" name="amcl" output="screen">
+ 	<remap from="scan" to="scan"/>
+	<param name="odom_frame_id" value="odom"/>
+    	<param name="odom_model_type" value="diff-corrected"/>
+    	<param name="base_frame_id" value="base_footprint"/>
+	<param name="global_frame_id" value="map"/>
+	<rosparam file="$(find robot_config)/config/amcl_params.yaml" command ="load" />
+    </node> 
 
 
 <!-- ***********         Transforms     *************  -->	 
